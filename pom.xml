@@ -27,7 +27,12 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <!-- 실행 환경 선언 -->
-        <env>local</env>
+        <env>dev</env>
+
+        <!-- for azure webapp deploy -->
+        <azure.resourceGroup>CloudPlatformTeamRG</azure.resourceGroup>
+        <azure.appName>yjkim-sample-webapp</azure.appName>
+        <azure.region>koreasouth</azure.region>
     </properties>
 
     <dependencies>
@@ -61,23 +66,120 @@
             <id>local</id>
             <properties>
                 <env>local</env>
+                <azure.resourceGroup>CloudPlatformTeamRG</azure.resourceGroup>
+                <azure.appName>yjkim-sample-webapp</azure.appName>
+                <azure.region>koreasouth</azure.region>
             </properties>
         </profile>
         <profile>
-            <id>dev</id>
+            <id>stg</id>
             <properties>
-                <env>dev</env>
+                <env>stg</env>
+                <azure.resourceGroup>CloudPlatformTeamRG</azure.resourceGroup>
+                <azure.appName>yjkim-sample-webapp</azure.appName>
+                <azure.region>koreasouth</azure.region>
             </properties>
         </profile>
         <profile>
             <id>prd</id>
             <properties>
                 <env>prd</env>
+                <azure.resourceGroup>CloudPlatformTeamRG</azure.resourceGroup>
+                <azure.appName>yjkim-sample-webapp</azure.appName>
+                <azure.region>koreasouth</azure.region>
             </properties>
         </profile>
     </profiles>
 
     <build>
+        <finalName>ROOT</finalName>
+        <pluginManagement><!-- lock down plugins versions to avoid using Maven
+				defaults (may be moved to parent pom) -->
+            <plugins>
+                <plugin>
+                    <groupId>com.microsoft.azure</groupId>
+                    <artifactId>azure-webapp-maven-plugin</artifactId>
+                    <!-- Check latest version on Maven Central -->
+                    <version>1.4.1</version>
+                    <configuration>
+                        <authentication>
+                            <serverId>azure-auth</serverId>
+                        </authentication>
+                        <resourceGroup>${azure.resourceGroup}</resourceGroup>
+                        <appName>${azure.appName}</appName>
+                        <region>${azure.region}</region>
+                        <deploymentType>war</deploymentType>
+
+                        <!-- Web App on Windows -->
+                        <javaVersion>1.8</javaVersion>
+                        <javaWebContainer>tomcat 8.5</javaWebContainer>
+
+                        <warFile>target/ROOT.war</warFile>
+                        <path>/</path>
+
+                        <!-- Deployment Slot 이용 배포 -->
+                        <deploymentSlotSetting>
+                            <name>staging</name>
+                            <configurationSource>parent</configurationSource>
+                        </deploymentSlotSetting>
+
+                        <appSettings>
+                            <property>
+                                <name>JAVA_OPTS</name>
+                                <value>-Dspring.profiles.active=${env} -Dfile.encoding=UTF-8 -Dspring.application.name=yjkim-sample-webapp</value>
+                            </property>
+                        </appSettings>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.0.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.7.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.20.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

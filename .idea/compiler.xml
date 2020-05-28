@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="v001-yjkim-dashborad" />
+        <module name="basic-sample-code" />
         <module name="v001-sample-code-web" />
-        <module name="v001-function-sample" />
         <module name="basic-sample-code-function" />
+        <module name="v001-function-sample" />
         <module name="v001-sample-code" />
+        <module name="v001-yjkim-dashborad" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +20,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="basic-sample-code" options="-parameters" />
       <module name="v001-sample-code" options="-parameters" />
       <module name="v001-sample-code-web" options="-parameters" />
       <module name="v001-yjkim-dashborad" options="-parameters" />
