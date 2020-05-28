@@ -23,5 +23,9 @@ server:
 ---
 spring:
   profiles: dev
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: parking
 server:
-  port: 8001
+  port: 8000
