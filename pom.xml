@@ -31,7 +31,7 @@
 
         <!-- for azure webapp deploy -->
         <azure.resourceGroup>CloudPlatformTeamRG</azure.resourceGroup>
-        <azure.appName>yjkim-sample-webapp1</azure.appName>
+        <azure.appName>yjkim-sample-webapp</azure.appName>
         <azure.region>koreasouth</azure.region>
     </properties>
 
@@ -64,30 +64,12 @@
     <profiles>
         <profile>
             <id>local</id>
-            <properties>
-                <env>local</env>
-                <azure.resourceGroup>CloudPlatformTeamRG</azure.resourceGroup>
-                <azure.appName>yjkim-sample-webapp</azure.appName>
-                <azure.region>koreasouth</azure.region>
-            </properties>
         </profile>
         <profile>
             <id>stg</id>
-            <properties>
-                <env>stg</env>
-                <azure.resourceGroup>CloudPlatformTeamRG</azure.resourceGroup>
-                <azure.appName>yjkim-sample-webapp</azure.appName>
-                <azure.region>koreasouth</azure.region>
-            </properties>
         </profile>
         <profile>
             <id>prd</id>
-            <properties>
-                <env>prd</env>
-                <azure.resourceGroup>CloudPlatformTeamRG</azure.resourceGroup>
-                <azure.appName>yjkim-sample-webapp</azure.appName>
-                <azure.region>koreasouth</azure.region>
-            </properties>
         </profile>
     </profiles>
 
