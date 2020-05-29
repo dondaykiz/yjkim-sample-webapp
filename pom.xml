@@ -31,7 +31,7 @@
 
         <!-- for azure webapp deploy -->
         <azure.resourceGroup>CloudPlatformTeamRG</azure.resourceGroup>
-        <azure.appName>yjkim-sample-webapp</azure.appName>
+        <azure.appName>yjkim-sample-webapp1</azure.appName>
         <azure.region>koreasouth</azure.region>
     </properties>
 
