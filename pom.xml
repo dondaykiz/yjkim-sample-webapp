@@ -30,8 +30,8 @@
         <env>dev</env>
 
         <!-- for azure webapp deploy -->
-        <azure.resourceGroup>CloudPlatformTeamRG</azure.resourceGroup>
-        <azure.appName>yjkim-sample-webapp</azure.appName>
+        <azure.resourceGroup>yjRG</azure.resourceGroup>
+        <azure.appName>yjk-sample-webapp</azure.appName>
         <azure.region>koreasouth</azure.region>
     </properties>
 
