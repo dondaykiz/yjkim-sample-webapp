@@ -43,6 +43,7 @@ public class SampleController {
      */
     @GetMapping(value = "/sample")
     public ApiResponse getSample() {
+        logger.debug("getSample STARTED");
         Sample sample = sampleService.getSample();
         ApiResponse apiResponse = new ApiResponse();
         apiResponse.setResultData(sample);
@@ -59,6 +60,7 @@ public class SampleController {
         if (bindingResult.hasErrors()) {
             throw new InvalidRequestException();
         }
+        logger.debug("addSample STARTED");
         sampleService.addSample();
         ApiResponse apiResponse = new ApiResponse();
         return apiResponse;

@@ -14,10 +14,15 @@ config:
 ---
 spring:
   profiles: local
+  application:
+    name: yjk-sample-webapp01
   data:
     mongodb:
       uri: mongodb://localhost:27017
       database: parking
+azure:
+  application-insights:
+    instrumentation-key: 7ec977a2-1c86-4eb9-b3a3-6b7966c04272
 server:
   port: 8000
 ---
