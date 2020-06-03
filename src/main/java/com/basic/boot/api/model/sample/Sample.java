@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * Sample 모델.
  *
@@ -16,6 +18,7 @@ public class Sample {
      * Sample.
      */
     @Id
+    @NotEmpty
     private String sample;
 
     public String getSample() {

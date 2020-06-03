@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: yj-sample-webapp
   profiles:
     active: local
   mvc:
@@ -14,15 +16,13 @@ config:
 ---
 spring:
   profiles: local
-  application:
-    name: yjk-sample-webapp01
   data:
     mongodb:
       uri: mongodb://localhost:27017
       database: parking
 azure:
   application-insights:
-    instrumentation-key: 7ec977a2-1c86-4eb9-b3a3-6b7966c04272
+    instrumentation-key: 6c7d751a-d1a4-48ce-8b62-547d6e6c0ed4
 server:
   port: 8000
 ---
@@ -32,5 +32,8 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017
       database: parking
+azure:
+  application-insights:
+    instrumentation-key: 6c7d751a-d1a4-48ce-8b62-547d6e6c0ed4
 server:
   port: 8000

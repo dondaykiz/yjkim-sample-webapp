@@ -58,7 +58,7 @@ public class SampleController {
     @PostMapping(value = "/sample")
     public ApiResponse addSample(@Validated @RequestBody Sample sample, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            throw new InvalidRequestException();
+            throw new InvalidRequestException(bindingResult);
         }
         logger.debug("addSample STARTED");
         sampleService.addSample();

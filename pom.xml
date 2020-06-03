@@ -30,8 +30,8 @@
         <env>dev</env>
 
         <!-- for azure webapp deploy -->
-        <azure.resourceGroup>yjRG</azure.resourceGroup>
-        <azure.appName>yjk-sample-webapp</azure.appName>
+        <azure.resourceGroup>yjkimRG</azure.resourceGroup>
+        <azure.appName>yjkim-sample-webapp</azure.appName>
         <azure.region>koreasouth</azure.region>
     </properties>
 
@@ -64,6 +64,11 @@
             <artifactId>applicationinsights-spring-boot-starter</artifactId>
             <version>1.1.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>applicationinsights-logging-logback</artifactId>
+            <version>2.5.1</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -77,6 +82,15 @@
             <id>prd</id>
         </profile>
     </profiles>
+
+<!--    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>-->
 
     <build>
         <finalName>ROOT</finalName>
